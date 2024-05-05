@@ -1,0 +1,15 @@
+{
+	"name": "react",
+	"version": "1.0.0",
+	"description": "react 宿主环境无关的公用方法",
+	"module": "index.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"shared": "workspace:*"
+	}
+}
