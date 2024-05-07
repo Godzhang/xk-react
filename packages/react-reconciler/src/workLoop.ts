@@ -4,7 +4,7 @@ import { FiberNode, FiberRootNode, createWorkInProgress } from "./fiber";
 import { HostRoot } from "./workTags";
 
 // 指向当前工作的 fiber 节点
-let workInProgress: FiberRootNode | FiberNode | null = null;
+let workInProgress: FiberNode | null = null;
 
 function prepareFreshStack(root: FiberRootNode) {
 	workInProgress = createWorkInProgress(root.current, {});
@@ -40,10 +40,18 @@ function renderRoot(root: FiberRootNode) {
 			workLoop();
 			break;
 		} catch (e) {
-			console.warn("workloop发生错误", e);
+			if (__DEV__) {
+				console.warn("workloop发生错误", e);
+			}
 			workInProgress = null;
 		}
 	} while (true);
+
+	const finishedWork = root.current.alternate;
+	root.finishedWork = finishedWork;
+
+	// 根据 wip fiberNode树 和 树中的 flags 执行具体的 DOM 操作
+	commitRoot(root);
 }
 
 function workLoop() {
@@ -60,7 +68,7 @@ function performUnitOfWork(fiber: FiberNode) {
 	if (next === null) {
 		completeUnitOfWork(fiber);
 	} else {
-		workInProgress = next!;
+		workInProgress = next;
 	}
 }
 
