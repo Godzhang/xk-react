@@ -10,7 +10,9 @@ import {
 import { ReactElementType } from "shared/ReactTypes";
 import { scheduleUpdateOnFiber } from "./workLoop";
 
-// ReactDOM.createRoot(rootElement);
+// ReactDOM.createRoot(rootElement).render(<App />)
+
+// ReactDOM.createRoot(rootElement)
 export function createContainer(container: Container) {
 	const hostRootFiber = new FiberNode(HostRoot, {}, null);
 	const root = new FiberRootNode(container, hostRootFiber);

@@ -10,7 +10,9 @@ import {
 import { Placement } from "./fiberFlags";
 
 // ?? mount阶段，有大量DOM需要插入，shouldTrachEffects 应设为 false，不追踪副作用
-export function ChildReconciler(shouldTrachEffects: boolean) {
+export function ChildReconciler(
+	shouldTrachEffects /** 是否需要追踪副作用 */ : boolean
+) {
 	function reconcileSingleElement(
 		returnFiber: FiberNode,
 		currentFiber: FiberNode | null,

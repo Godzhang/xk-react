@@ -9,6 +9,7 @@ import {
 } from "shared/ReactTypes";
 
 // React Element
+// 与宿主环境无关
 const ReactElement = function (
 	type: Type,
 	key: Key,
@@ -21,7 +22,7 @@ const ReactElement = function (
 		key,
 		ref,
 		props,
-		__mark: "xk"
+		__mark: "xk" // 为了与真实 react 区分开添加的字段
 	};
 	return element;
 };
